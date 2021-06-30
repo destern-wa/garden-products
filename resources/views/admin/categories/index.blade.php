@@ -25,8 +25,8 @@
                             <td>{{$category->description}}</td>
                             <td>
                                 <div class="stacked-for-small expanded button-group" style="margin: 0">
+                                    <a href="{{route('categories.show', $category)}}" class="button">View</a>
                                     <!-- TODO: Link to relevant pages -->
-                                    <a class="button">View</a>
                                     <a class="button success">Edit</a>
                                     <a class="button alert">Delete</a>
                                 </div>

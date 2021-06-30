@@ -1091,6 +1091,10 @@ select {
 	margin-left: auto;
 	margin-right: auto;
 }
+.my-2 {
+	margin-top: 0.5rem;
+	margin-bottom: 0.5rem;
+}
 .ml-3 {
 	margin-left: 0.75rem;
 }
@@ -1264,9 +1268,6 @@ select {
 }
 .max-w-xl {
 	max-width: 36rem;
-}
-.max-w-5xl {
-	max-width: 64rem;
 }
 .max-w-6xl {
 	max-width: 72rem;
@@ -1645,6 +1646,9 @@ select {
 .font-semibold {
 	font-weight: 600;
 }
+.font-bold {
+	font-weight: 700;
+}
 .uppercase {
 	text-transform: uppercase;
 }
@@ -1836,6 +1840,9 @@ h3 {
 }
 h4 {
     font-size: 1.2rem;
+}
+.font-bold {
+    font-weight: bold;
 }
 .hover\:border-gray-300:hover {
 	--tw-border-opacity: 1;
