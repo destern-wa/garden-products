@@ -20,3 +20,8 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+Route::prefix('admin')->group(function () {
+    Route::resource('/categories', '\App\Http\Controllers\CategoryController');
+    Route::get('/categories/{category}/delete', '\App\Http\Controllers\CategoryController@delete')->name('categories.delete');
+});
