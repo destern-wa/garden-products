@@ -18,10 +18,13 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+    // Redirect the /dashboard route (which Jetstream uses) to the /admin (dashboard) route
+    return redirect(route('dashboard'));
+});
 
 Route::prefix('admin')->group(function () {
+    Route::view('/', 'admin.dashboard')->name('dashboard');
+
     Route::resource('/categories', '\App\Http\Controllers\CategoryController');
     Route::get('/categories/{category}/delete', '\App\Http\Controllers\CategoryController@delete')->name('categories.delete');
 
