@@ -28,12 +28,40 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return JsonResponse
      */
     public function store(Request $request)
     {
-        //
+        // Basic validation
+        $this->validate($request, $this->validationRules);
+
+        // If parent category is specified, validate it exists in the database table
+        if ($request->get("parent_category_id")) {
+            $this->validate($request, [
+                "parent_category_id" => "exists:categories,id",
+            ]);
+        }
+
+        // Get all data from the request, and generate a slug
+        $data = $request->all();
+        $data['slug'] = $this->slugify($request->get('name'), 40);
+        // Check if slug is already used
+        if (Category::where('slug', $data['slug'])->first()) {
+            // prepend with timestamp to make it unique
+            $data['slug'] = $this->slugify(time() . "-" . $request->get('name'), 40);
+        }
+
+        // If a file was uploaded, put it in the public/images folder under a timestamped name
+        if ($request->hasFile('uploadFile')) {
+            $fileName = time().'_'.$request->file('uploadFile')->getClientOriginalName();
+            $request->file('uploadFile')->move(public_path('images'), $fileName);
+            $data['picture'] = $fileName;
+        }
+
+        $category = Category::create($data);
+
+        return response()->json($category, JsonResponse::HTTP_CREATED);
     }
 
     /**
