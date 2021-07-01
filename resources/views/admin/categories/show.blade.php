@@ -58,8 +58,16 @@
                         </ul>
                     @endif
 
-                    <!-- TODO: List products in the category -->
-
+                    @if(count($category->products)>0)
+                        <h3 class="cell small-12 font-bold py-2">Products</h3>
+                        <ul class="cell small-12 grid-x grid-padding-x small-up-2 medium-up-3">
+                            @foreach($category->products as $product)
+                                <li class="cell text-center py-1">
+                                    <a href="{{route('products.show', $product)}}">{{$product->name}}</a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    @endif
                 </div>
             </div>
         </div>
