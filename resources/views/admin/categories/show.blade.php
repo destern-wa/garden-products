@@ -32,10 +32,10 @@
                 </dl>
                 <div class="grid-x grid-padding-x py-2">
                     <div class="cell small-6 medium-3">
-                        <a href="{{route('categories.edit', $category)}}" class="button expanded">Edit</a> <!-- TODO: Link edit page -->
+                        <a href="{{route('categories.edit', $category)}}" class="button expanded">Edit</a>
                     </div>
                     <div class="cell small-6 medium-3">
-                        <a class="alert button expanded">Delete</a> <!-- TODO: Link delete page -->
+                        <a href="{{route('categories.delete', $category)}}" class="alert button expanded">Delete</a>
                     </div>
                     <div class="cell small-6 small-offset-3 medium-3 medium-offset-3">
                         <a href="{{route('categories.index')}}" class="secondary button expanded">View all</a>

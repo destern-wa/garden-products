@@ -27,8 +27,7 @@
                                 <div class="stacked-for-small expanded button-group" style="margin: 0">
                                     <a href="{{route('categories.show', $category)}}" class="button">View</a>
                                     <a href="{{route('categories.edit', $category)}}" class="button success">Edit</a>
-                                    <!-- TODO: Link to relevant page -->
-                                    <a class="button alert">Delete</a>
+                                    <a href="{{route('categories.delete', $category)}}" class="button alert">Delete</a>
                                 </div>
                             </td>
                         </tr>

@@ -6,6 +6,7 @@ use App\Models\Category;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\ValidationException;
 
 class CategoryController extends Controller
@@ -161,21 +162,22 @@ class CategoryController extends Controller
      * Show the form to confirm deleting the specified resource.
      *
      * @param Category $category
-     * @return \Illuminate\Http\Response
+     * @return View
      */
     public function delete(Category $category)
     {
-        //
+        return view('admin.categories.delete', compact('category'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param Category $category
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return redirect(route('categories.index'))->with('status', 'Category deleted!');
     }
 }
