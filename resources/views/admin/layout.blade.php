@@ -55,6 +55,40 @@
                 </li>
             </ul>
         </div>
+        <div class="top-bar-right">
+            <ul class="dropdown menu" data-dropdown-menu>
+                <li class="has-submenu">
+                    <a><strong>{{ Auth::user()->name }}</strong></a>
+                    <ul class="submenu menu vertical" data-submenu>
+                        <li>
+                            <a href="{{ route('profile.show') }}">
+                                {{ __('Profile') }}
+                            </a>
+                        </li>
+
+                        @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
+                            <li>
+                                <a href="{{ route('api-tokens.index') }}">
+                                    {{ __('API Tokens') }}
+                                </a>
+                            </li>
+                    @endif
+
+                    <!-- Authentication -->
+                        <li>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <a href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                    this.closest('form').submit();">
+                                    {{ __('Log Out') }}
+                                </a>
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
     </div>
 </nav>
 
