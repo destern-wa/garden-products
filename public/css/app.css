@@ -1841,9 +1841,9 @@ h3 {
 h4 {
     font-size: 1.2rem;
 }
-.font-bold {
-    font-weight: bold;
-}
+/*.font-bold {*/
+/*    font-weight: bold;*/
+/*}*/
 .hover\:border-gray-300:hover {
 	--tw-border-opacity: 1;
 	border-color: rgba(209, 213, 219, var(--tw-border-opacity));
