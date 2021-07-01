@@ -40,7 +40,7 @@
         <div class="top-bar-left">
             <ul class="dropdown menu" data-dropdown-menu>
                 <li class="menu-text">Georges Garden Shop</li>
-                <li><a href="">Admin Dashboard</a></li> <!-- TODO: link to dashboard -->
+                <li><a href="{{route('dashboard')}}">Admin Dashboard</a></li>
                 <li class="has-submenu">
                     <a href="{{route('products.index')}}">Products</a>
                     <ul class="submenu menu vertical" data-submenu>
