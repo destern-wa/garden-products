@@ -35,7 +35,7 @@
                     @empty
                         <tr>
                             <td colspan="4">
-                                No categories found. You can <a>add a category</a>. <!-- TODO: Link to create category page -->
+                                No categories found. You can <a href="{{route('categories.create')}}">add a category</a>.
                             </td>
                         </tr>
                     @endforelse

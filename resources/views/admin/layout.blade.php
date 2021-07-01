@@ -50,7 +50,7 @@
                 <li class="has-submenu">
                     <a href="{{route('categories.index')}}">Categories</a>
                     <ul class="submenu menu vertical" data-submenu>
-                        <li><a href="">Create category</a></li> <!-- TODO: link to create category -->
+                        <li><a href="{{route('categories.create')}}">Create category</a></li>
                     </ul>
                 </li>
             </ul>

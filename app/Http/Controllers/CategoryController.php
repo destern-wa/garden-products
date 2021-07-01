@@ -11,6 +11,15 @@ use Illuminate\Validation\ValidationException;
 class CategoryController extends Controller
 {
     /**
+     * @var string[] Rules for validating store/update requests
+     */
+    protected $validationRules = [
+        "name" => "required|string|max:32",
+        "description" => "max:255",
+        "uploadFile" => "image|mimes:jpg,png,jpeg,gif,svg|max:2048"
+    ];
+
+    /**
      * Display a listing of the resource.
      *
      * @return View
@@ -24,22 +33,57 @@ class CategoryController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
     public function create()
     {
-        //
+        return view('admin.categories.edit', [
+            'create' => true,
+            'allCategories' => Category::all(),
+            'form' => [
+                'method' => 'POST',
+                'action' => route('categories.store')
+            ],
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  Request  $request
+     * @return RedirectResponse
      */
     public function store(Request $request)
     {
-        //
+        // Basic validation
+        $this->validate($request, $this->validationRules);
+
+        // If parent category is specified, validate it exists in the database table
+        if ($request->get("parent_category_id")) {
+            $this->validate($request, [
+                "parent_category_id" => "exists:categories,id",
+            ]);
+        }
+
+        // Get all data from the request, and generate a slug
+        $data = $request->all();
+        $data['slug'] = $this->slugify($request->get('name'), 40);
+        // Check if slug is already used
+        if (Category::where('slug', $data['slug'])->first()) {
+            // prepend with timestamp to make it unique
+            $data['slug'] = $this->slugify(time() . "-" . $request->get('name'), 40);
+        }
+
+        // If a file was uploaded, put it in the public/images folder under a timestamped name
+        if ($request->hasFile('uploadFile')) {
+            $fileName = time().'_'.$request->file('uploadFile')->getClientOriginalName();
+            $request->file('uploadFile')->move(public_path('images'), $fileName);
+            $data['picture'] = $fileName;
+        }
+
+        $category = Category::create($data);
+
+        return redirect(route("categories.show", $category));
     }
 
     /**
@@ -83,11 +127,7 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         // Basic validation
-        $this->validate($request, [
-            "name" => "required|string|max:32",
-            "description" => "string|max:255",
-            "uploadFile" => "image|mimes:jpg,png,jpeg,gif,svg|max:2048"
-        ]);
+        $this->validate($request, $this->validationRules);
 
         // If parent category is specified, validate it exists in the database table
         if ($request->get("parent_category_id")) {
