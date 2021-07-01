@@ -42,7 +42,7 @@
                 <li class="menu-text">Georges Garden Shop</li>
                 <li><a href="">Admin Dashboard</a></li> <!-- TODO: link to dashboard -->
                 <li class="has-submenu">
-                    <a href="">Products</a> <!-- TODO: link to browse products -->
+                    <a href="{{route('products.index')}}">Products</a>
                     <ul class="submenu menu vertical" data-submenu>
                         <li><a href="">Create product</a></li> <!-- TODO: link to create product -->
                     </ul>
