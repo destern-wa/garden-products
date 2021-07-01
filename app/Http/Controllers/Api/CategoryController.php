@@ -118,11 +118,12 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  Category  $category
+     * @return JsonResponse
      */
-    public function destroy($id)
+    public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return response()->json(null, JsonResponse::HTTP_NO_CONTENT);
     }
 }
