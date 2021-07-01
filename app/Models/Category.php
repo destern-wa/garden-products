@@ -19,6 +19,7 @@ class Category extends Model
 
     /**
      * Subcategories of this category
+     *
      * Each category can have many sub-categories
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -34,5 +35,15 @@ class Category extends Model
      */
     public function parentcat() {
         return $this->belongsTo(Category::class, 'parent_category_id', 'id');
+    }
+
+    /**
+     * Products in this category
+     *
+     * Each category can have many products.
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function products() {
+        return $this->hasMany(Product::class);
     }
 }
