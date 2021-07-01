@@ -44,7 +44,7 @@
                 <li class="has-submenu">
                     <a href="{{route('products.index')}}">Products</a>
                     <ul class="submenu menu vertical" data-submenu>
-                        <li><a href="">Create product</a></li> <!-- TODO: link to create product -->
+                        <li><a href="{{route('products.create')}}">Create product</a></li>
                     </ul>
                 </li>
                 <li class="has-submenu">

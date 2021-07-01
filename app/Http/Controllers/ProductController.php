@@ -38,22 +38,52 @@ class ProductController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
     public function create()
     {
-        //
+        return view('admin.products.edit', [
+            'create' => true,
+            'categories' => Category::all(),
+            'form' => [
+                'method' => 'POST',
+                'action' => route('products.store')
+            ],
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return RedirectResponse
+     * @throws ValidationException
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, $this->validationRules);
+
+        // Get all data from the request, and generate a slug
+        $data = $request->all();
+        $data['slug'] = $this->slugify($request->get('name'), 72);
+        // Check if slug is already used
+        if (Product::where('slug', $data['slug'])->first()) {
+            // prepend with timestamp to make it unique
+            $data['slug'] = $this->slugify(time() . "-" . $request->get('name'), 72);
+        }
+        // available needs to be a boolean instead of a string
+        $data['available'] = $request->boolean('available');
+
+        // If a file was uploaded, put it in the public/images folder under a timestamped name
+        if ($request->hasFile('uploadFile')) {
+            $fileName = time().'_'.$request->file('uploadFile')->getClientOriginalName();
+            $request->file('uploadFile')->move(public_path('images'), $fileName);
+            $data['picture'] = $fileName;
+        }
+
+        $product = Product::create($data);
+
+        return redirect(route("products.show", $product));
     }
 
     /**
