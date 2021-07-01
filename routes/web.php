@@ -13,10 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+/* Customer routes */
+Route::get('/', '\App\Http\Controllers\CustomerController@home')->name('home');
+Route::view('/blog', 'customer.blog')->name('blog');
+Route::view('/contact', 'customer.contact')->name('contact');
+Route::get('/products', '\App\Http\Controllers\CustomerController@products')->name('products');
 
+/* Admin portal routes */
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     // Redirect the /dashboard route (which Jetstream uses) to the /admin (dashboard) route
     return redirect(route('dashboard'));

@@ -1,0 +1,409 @@
+@import url(https://fonts.googleapis.com/css2?family=Carter+One&family=Permanent+Marker&family=Zilla+Slab+Highlight&display=swap);
+/* ---------- Fonts -------------------------------------------------------- */
+/* ---------- Colours ------------------------------------------------------ */
+:root {
+  --color-primary: #2c6e49ff;
+  --color-primary-dark: #1f4d32ff;
+  --color-primary-light: #4c956cff;
+  --color-accent: #dda60eff;
+  --color-accent-dark: #8F6B09;
+  --color-accent-light: #F6D373;
+  --color-secondary: #6c584cff;
+  --color-secondary-dark: #4b3e35ff;
+  --color-secondary-light: #a98467ff;
+}
+
+/* ---------- Backgrounds -------------------------------------------------- */
+body {
+  background-image: url(/images/pexels-snapwire-6992.jpg?b242d2a5340184bdbe033009b8720ce0);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+main {
+  background: #fffd;
+  border-top: 1px solid var(--color-accent);
+}
+
+/* ---------- Title bar and menu ------------------------------------------- */
+.title-bar {
+  border-bottom: 2px solid var(--color-accent);
+}
+
+.title-bar-title {
+  width: 100%;
+  text-align: center;
+}
+
+#main-menu {
+  background-image: url(/images/pexels-ann-h-3095914.jpg?029b3cd9fb7ea544bd97846ba263bfd7);
+  background-repeat: repeat;
+  background-size: 320px 213px;
+}
+
+#main-menu ul {
+  background: transparent;
+}
+
+#main-menu li {
+  color: #fff;
+  display: grid;
+  place-items: center;
+}
+
+#main-menu input {
+  max-width: 100%;
+  margin: 0;
+}
+
+#main-menu .top-bar-left {
+  padding: 0 8px;
+}
+
+#main-menu .top-bar-right {
+  padding: 8px 16px;
+}
+
+#main-menu a {
+  color: #fff;
+  opacity: 88%;
+  text-shadow: var(--color-primary-dark) 1px 1px 5px, var(--color-primary-dark) -1px -1px 5px;
+  font-weight: bold;
+  transition: text-shadow 250ms linear;
+}
+
+#main-menu a:focus {
+  opacity: 1;
+}
+
+#main-menu a:hover {
+  opacity: 1;
+  text-shadow: 2px 2px 4px black, -2px -2px 4px black;
+}
+
+/* ---------- Typography --------------------------------------------------- */
+h1, .visual-h1 {
+  font-family: "Permanent Marker", cursive;
+  color: var(--color-primary) !important;
+  text-shadow: 1px 1px 1px white, -1px 0 1px white, 2px 2px 5px var(--color-accent), -2px -2px 5px var(--color-accent);
+  cursor: default;
+}
+
+.visual-h1 {
+  font-size: 1.8rem;
+}
+
+h2, h3, h4, h5 {
+  font-family: "Carter One", cursive;
+  margin-top: 0.5em;
+}
+
+h2 {
+  color: var(--color-primary-dark);
+}
+
+h3 {
+  color: var(--color-secondary);
+}
+
+h4 {
+  color: var(--color-secondary-light);
+}
+
+h5 {
+  color: var(--color-accent-dark);
+}
+
+.category-title {
+  font-family: "Carter One", cursive;
+  font-size: 1.5rem;
+  margin: 0;
+  border: 0;
+}
+
+figcaption {
+  font-size: 120%;
+}
+
+figcaption em {
+  font-style: inherit;
+  text-transform: uppercase;
+  text-shadow: 0 0 10px var(--color-accent);
+}
+
+main a {
+  color: var(--color-primary-light);
+  -webkit-text-decoration-color: transparent !important;
+          text-decoration-color: transparent !important;
+  transition: color 300ms ease-in-out, -webkit-text-decoration 400ms ease-in-out;
+  transition: color 300ms ease-in-out, text-decoration 400ms ease-in-out;
+  transition: color 300ms ease-in-out, text-decoration 400ms ease-in-out, -webkit-text-decoration 400ms ease-in-out;
+}
+
+main a:hover,
+main a:focus,
+main a:active {
+  color: var(--color-primary);
+}
+
+main a:hover {
+  -webkit-text-decoration: var(--color-accent) underline !important;
+          text-decoration: var(--color-accent) underline !important;
+}
+
+a:visited {
+  color: var(--color-primary-light);
+}
+
+.attribution {
+  color: #888;
+  font-size: 88%;
+  font-style: italic;
+}
+
+/* ---------- Foundation components style tweaks --------------------------- */
+button.button,
+.button.primary {
+  background-color: var(--color-primary);
+}
+
+button.button:hover,
+button.button:focus,
+.button.primary:hover,
+.button.primary:focus {
+  background-color: var(--color-primary-light);
+}
+
+.button.secondary {
+  background-color: var(--color-secondary);
+}
+
+.button.secondary:hover,
+.button.secondary:focus {
+  background-color: var(--color-secondary-light);
+}
+
+button:hover,
+button:focus {
+  font-weight: bold;
+}
+
+button {
+  transition: background-color 700ms ease-in-out, font-weight 900ms ease-in-out;
+}
+
+/* ---------- Style tweaks for specific page sections ---------------------- */
+/* === CAROUSEL === */
+#carousel-container {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* Fixes vertical positioning of next/prev buttons */
+#carousel-container .orbit-wrapper {
+  position: relative;
+}
+
+/* Make the buttons a bit bigger and partially transparent... */
+#carousel-container button {
+  font-size: 1.5rem;
+  opacity: 0.7;
+}
+
+/* ...except on hover */
+#carousel-container button:hover {
+  opacity: 1;
+}
+
+/* === NEWS === */
+#news-list .callout {
+  padding: 0.5rem;
+}
+
+#news-list > li > a {
+  font-weight: bold;
+  /*font-variant: small-caps;*/
+  /*text-decoration: underline;*/
+}
+
+/* === BLOG === */
+/* Limit article content width for readability */
+article > * {
+  max-width: 80ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+article h4 {
+  display: inline-block;
+  padding-left: calc(100% - 49ch);
+}
+
+article h5 {
+  width: 50ch;
+}
+
+article iframe {
+  border: 0;
+  /* Fix the responsive embeds (iframes) to be limited in size
+     (otherwise, they gets humungous on large screens) */
+  max-width: 80ch;
+  max-height: calc(80ch * 9 / 16);
+}
+
+/* The container's padding needs to match the iframe height */
+article .responsive-embed {
+  padding-bottom: calc(min(100%, 80ch) * 9 / 16);
+}
+
+article time {
+  color: #767676;
+  display: inline-block;
+  font-size: 90%;
+  font-style: italic;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+
+article time::before {
+  content: " Posted ";
+  padding-left: 0.5rem;
+  font-weight: normal;
+}
+
+article .attribution {
+  text-align: end;
+}
+
+/* === GALLERIES (Product categories, products) === */
+/* Gallery items are the containing boxes */
+.gallery-item {
+  display: block;
+  padding: 0;
+  /* Allows images to go right to the container edge */
+  border-color: var(--color-accent);
+  border-radius: 10px;
+  text-align: center;
+  /* Limit to no more than 66% of the available viewport width,
+     unless this would be less than 300px. Prevents gallery items
+     becoming too wide on largish mobile devices. */
+  max-width: max(66vw, 300px);
+  /* Add a bit more spacing vertically; auto horizontal margin keeps things centered */
+  margin: 1rem auto;
+  transition: box-shadow 180ms linear;
+  /* Keeps a consistent height for each row of items.
+     The 2rem accounts for top+bottom margins. */
+  height: calc(100% - 2rem);
+}
+
+.gallery-item:hover {
+  box-shadow: 0 0 15px var(--color-accent-light);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 180px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 10px;
+  border-bottom-right-radius: 50% 10%;
+  border-bottom-left-radius: 50% 10%;
+}
+
+.gallery-item-details {
+  padding: 5px 10px;
+  /* Space details out over the full height of the gallery-item container */
+  display: flex;
+  flex-direction: column;
+  place-content: space-between;
+  height: calc(100% - 180px);
+  /* 180px is the image height per above */
+}
+
+.gallery-item-details .label.primary {
+  background: var(--color-secondary);
+  border-radius: 8px;
+  white-space: nowrap;
+  margin: 0 0.2em;
+}
+
+.gallery-item-details .label.primary:first-of-type {
+  background: var(--color-primary);
+}
+
+.pagination .current {
+  background: var(--color-primary);
+}
+
+/* === Product categories gallery === */
+#productCategories img {
+  height: 220px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+#productCategories .gallery-item {
+  color: white;
+}
+
+#productCategories .gallery-item:hover {
+  color: var(--color-accent);
+}
+
+#productCategories .gallery-item-details {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  border-radius: 0 0 10px 10px;
+  background: rgba(10, 10, 10, 0.5);
+}
+
+#productCategories .category-title {
+  color: inherit;
+  text-shadow: 0 1px 20px var(--color-primary);
+  transition: color 300ms ease-in-out;
+}
+
+/* === FORMS === */
+/* Make non-selectable/invalid options look different */
+select optgroup,
+.option-invalid {
+  color: #888 !important;
+  font-style: italic !important;
+  font-weight: normal !important;
+}
+
+/* Options within an optgroup should not inherit the optgroup's style.
+ * The * selector is needed because of how options are rendered by the
+ * OS rather than the browser.
+ */
+select optgroup * {
+  color: initial;
+  font-style: initial;
+  font-weight: initial;
+}
+
+/* === FOOTER ==== */
+footer {
+  background: darkolivegreen;
+  background: var(--color-primary-dark);
+  color: azure;
+  color: var(--color-accent-light);
+  padding: 10px 5px;
+  text-align: center;
+}
+
+footer ul {
+  list-style: none;
+}
+
+footer li {
+  display: block;
+  padding: 0.5rem;
+}
+
+footer .attribution {
+  color: silver;
+}
