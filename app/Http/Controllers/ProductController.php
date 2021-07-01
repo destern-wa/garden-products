@@ -155,21 +155,22 @@ class ProductController extends Controller
      * Show the form to confirm deleting the specified resource.
      *
      * @param Product $product
-     * @return \Illuminate\Http\Response
+     * @return View
      */
     public function delete(Product $product)
     {
-        //
+        return view('admin.products.delete', compact('product'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param Product $product
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return redirect(route('products.index'))->with('status', 'Product deleted!');
     }
 }
