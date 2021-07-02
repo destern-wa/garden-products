@@ -14,14 +14,29 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/**
+ * Generates route names for api resource routes, prefixed with `api.` to
+ * avoid name clashes with similar web resource routes.
+ *
+ * @param string $resource
+ * @return string[]
+ */
+function apiRouteNames(string $resource) {
+    return [
+        'index'   => "api.$resource.index",
+        'store'   => "api.$resource.store",
+        'show'    => "api.$resource.show",
+        'update'  => "api.$resource.update",
+        'destroy' => "api.$resource.destroy",
+    ];
+}
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('categories', App\Http\Controllers\Api\CategoryController::class)->names([
-    'index'   => 'api.categories.index',
-    'store'   => 'api.categories.store',
-    'show'    => 'api.categories.show',
-    'update'  => 'api.categories.update',
-    'destroy' => 'api.categories.destroy',
-]);
+Route::apiResource('categories', App\Http\Controllers\Api\CategoryController::class)
+    ->names(apiRouteNames('categories'));
+
+Route::apiResource('products', App\Http\Controllers\Api\ProductController::class)
+    ->names(apiRouteNames('products'));
