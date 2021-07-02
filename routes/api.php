@@ -32,21 +32,24 @@ function apiRouteNames(string $resource) {
     ];
 }
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-Route::apiResource('categories', App\Http\Controllers\Api\CategoryController::class)
-    ->names(apiRouteNames('categories'));
-
-Route::apiResource('products', App\Http\Controllers\Api\ProductController::class)
-    ->names(apiRouteNames('products'));
-
-// Authentication routing
-Route::post('auth/login', [AuthController::class, 'login']);
+// API routes protected by middleware that requires bearer access token in request headers
 Route::group(['middleware' => ['auth:sanctum']], function () {
+    // Show current user details
     Route::get('auth/user', function () {
         return auth()->user();
     });
+
+    // Logout current user (revoke token)
     Route::post('auth/logout', [AuthController::class, 'logout']);
+
+    // Routes for category feature
+    Route::apiResource('categories', App\Http\Controllers\Api\CategoryController::class)
+        ->names(apiRouteNames('categories'));
+
+    // Routes for product feature
+    Route::apiResource('products', App\Http\Controllers\Api\ProductController::class)
+        ->names(apiRouteNames('products'));
 });
+
+// Login route (not protected by authentication middleware, instead users provide login credentials in request)
+Route::post('auth/login', [AuthController::class, 'login']);
