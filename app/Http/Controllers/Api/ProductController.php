@@ -33,12 +33,12 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  Product  $product
+     * @return JsonResponse
      */
-    public function show($id)
+    public function show(Product $product)
     {
-        //
+        return response()->json($product);
     }
 
     /**
