@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -40,3 +41,12 @@ Route::apiResource('categories', App\Http\Controllers\Api\CategoryController::cl
 
 Route::apiResource('products', App\Http\Controllers\Api\ProductController::class)
     ->names(apiRouteNames('products'));
+
+// Authentication routing
+Route::post('auth/login', [AuthController::class, 'login']);
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::get('auth/user', function () {
+        return auth()->user();
+    });
+    Route::post('auth/logout', [AuthController::class, 'logout']);
+});
