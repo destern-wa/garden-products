@@ -37,13 +37,11 @@ class JetstreamServiceProvider extends ServiceProvider
      */
     protected function configurePermissions()
     {
-        Jetstream::defaultApiTokenPermissions(['read']);
-
-        Jetstream::permissions([
-            'create',
-            'read',
-            'update',
-            'delete',
-        ]);
+        /* For the initial version of the app, tokens are just used for authentication,
+         * not permissions. See https://jetstream.laravel.com/2.x/features/api.html#defining-permissions
+         * for how to set up proper permissions.
+         */
+        Jetstream::defaultApiTokenPermissions(['all']);
+        Jetstream::permissions(['all']);
     }
 }
