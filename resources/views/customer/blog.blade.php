@@ -133,7 +133,7 @@
                     <article class="accordion-content" data-tab-content>
                         <h4>The how, when, and why of fertiliser</h4>
                         <time datetime="2021-02-28T12:15+08:00">12:15pm, 28 February 2021</time>
-                        <p>We have a great <a href="products.html">range of fertilisers</a>, but are you fertilising
+                        <p>We have a great <a href="{{url('products').'?category=fertilisers'}}">range of fertilisers</a>, but are you fertilising
                             correctly? Watch and find out!</p>
                         <div class="responsive-embed">
                             <iframe width="900" height="506" src="https://www.youtube.com/embed/qPRbs8pvvhE"
